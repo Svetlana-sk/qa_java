@@ -35,7 +35,6 @@ public class ParameterizedLionTest {
         return Arrays.asList(new Object[][]{
                 {"Самец", 3, true, List.of("Мясо"), false},
                 {"сОмец", 0, false, List.of(), true}
-                // Add more test cases as needed
         });
     }
 
