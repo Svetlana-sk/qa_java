@@ -18,7 +18,4 @@ public class Cat {
         return predator.eatMeat();
     }
 
-    public String getFamily() {
-        return predator.getFamily();
-    }
 }
