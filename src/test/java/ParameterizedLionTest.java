@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -34,7 +33,7 @@ public class ParameterizedLionTest {
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 {"Самец", 3, true, List.of("Мясо"), false},
-                {"сОмец", 0, false, List.of(), true}
+                {"Самка", 3, false, List.of("Мясо"), false}
         });
     }
 
@@ -47,9 +46,9 @@ public class ParameterizedLionTest {
             Lion lion = new Lion(sex, mockFeline);
             int kittens = lion.getKittens();
 
-            assertEquals(expectedKittens, kittens);
+            assertTrue(expectedKittens == kittens);
         } catch (Exception e) {
-            assertEquals(expectException, true);
+            assertTrue(expectException);
         }
     }
 
@@ -61,9 +60,9 @@ public class ParameterizedLionTest {
             Lion lion = new Lion(sex, mockFeline);
             boolean hasMane = lion.doesHaveMane();
 
-            assertEquals(expectedHasMane, hasMane);
+            assertTrue(expectedHasMane == hasMane);
         } catch (Exception e) {
-            assertEquals(expectException, true);
+            assertTrue(expectException);
         }
     }
 
@@ -76,9 +75,9 @@ public class ParameterizedLionTest {
             Lion lion = new Lion(sex, mockFeline);
             List<String> food = lion.getFood();
 
-            assertEquals(expectedFood, food);
+            assertTrue(expectedFood.equals(food));
         } catch (Exception e) {
-            assertEquals(expectException, true);
+            assertTrue(expectException);
         }
     }
 }

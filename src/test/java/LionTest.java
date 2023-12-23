@@ -21,13 +21,20 @@ public class LionTest {
 
     @Test
     public void testDoesHaveMane() throws Exception {
-        Feline mockFeline = Mockito.mock(Feline.class);
 
-        Lion maleLion = new Lion("Самец", mockFeline);
-        assertTrue(maleLion.doesHaveMane());
+        Lion maleLion = new Lion("Самец", new Feline());
+        assertLionHasMane(maleLion);
 
-        Lion femaleLion = new Lion("Самка", mockFeline);
-        assertFalse(femaleLion.doesHaveMane());
+        Lion femaleLion = new Lion("Самка", new Feline());
+        assertLionDoesNotHaveMane(femaleLion);
+    }
+
+    private void assertLionHasMane(Lion lion) {
+        assertTrue(lion.doesHaveMane());
+    }
+
+    private void assertLionDoesNotHaveMane(Lion lion) {
+        assertFalse(lion.doesHaveMane());
     }
 
     @Test
