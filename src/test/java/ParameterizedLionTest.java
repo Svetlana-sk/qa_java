@@ -9,22 +9,19 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class ParameterizedLionTest {
 
     private final String sex;
     private final int expectedKittens;
-    private final boolean expectedHasMane;
     private final List<String> expectedFood;
     private final boolean expectException;
 
-    public ParameterizedLionTest(String sex, int expectedKittens, boolean expectedHasMane, List<String> expectedFood, boolean expectException) {
+    public ParameterizedLionTest(String sex, int expectedKittens, List<String> expectedFood, boolean expectException) {
         this.sex = sex;
         this.expectedKittens = expectedKittens;
-        this.expectedHasMane = expectedHasMane;
         this.expectedFood = expectedFood;
         this.expectException = expectException;
     }
@@ -32,8 +29,8 @@ public class ParameterizedLionTest {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
-                {"Самец", 3, true, List.of("Мясо"), false},
-                {"Самка", 3, false, List.of("Мясо"), false}
+                {"Самец", 3, List.of("Мясо"), false},
+                {"Самка", 3, List.of("Мясо"), false}
         });
     }
 
@@ -46,23 +43,9 @@ public class ParameterizedLionTest {
             Lion lion = new Lion(sex, mockFeline);
             int kittens = lion.getKittens();
 
-            assertTrue(expectedKittens == kittens);
+            assertEquals(expectedKittens, kittens);
         } catch (Exception e) {
-            assertTrue(expectException);
-        }
-    }
-
-    @Test
-    public void testDoesHaveMane() {
-        try {
-            Feline mockFeline = Mockito.mock(Feline.class);
-
-            Lion lion = new Lion(sex, mockFeline);
-            boolean hasMane = lion.doesHaveMane();
-
-            assertTrue(expectedHasMane == hasMane);
-        } catch (Exception e) {
-            assertTrue(expectException);
+            assertEquals(expectException, true);
         }
     }
 
@@ -75,9 +58,9 @@ public class ParameterizedLionTest {
             Lion lion = new Lion(sex, mockFeline);
             List<String> food = lion.getFood();
 
-            assertTrue(expectedFood.equals(food));
+            assertEquals(expectedFood, food);
         } catch (Exception e) {
-            assertTrue(expectException);
+            assertEquals(expectException, true);
         }
     }
 }

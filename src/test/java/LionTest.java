@@ -20,21 +20,15 @@ public class LionTest {
     }
 
     @Test
-    public void testDoesHaveMane() throws Exception {
-
+    public void testDoesHaveMane_MaleLion() throws Exception {
         Lion maleLion = new Lion("Самец", new Feline());
-        assertLionHasMane(maleLion);
+        assertTrue(maleLion.doesHaveMane());
+    }
 
+    @Test
+    public void testDoesNotHaveMane_FemaleLion() throws Exception {
         Lion femaleLion = new Lion("Самка", new Feline());
-        assertLionDoesNotHaveMane(femaleLion);
-    }
-
-    private void assertLionHasMane(Lion lion) {
-        assertTrue(lion.doesHaveMane());
-    }
-
-    private void assertLionDoesNotHaveMane(Lion lion) {
-        assertFalse(lion.doesHaveMane());
+        assertFalse(femaleLion.doesHaveMane());
     }
 
     @Test
